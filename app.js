@@ -10,7 +10,13 @@ const operators = document.querySelectorAll('.operator');
 
 numbers.forEach(element => {
     element.addEventListener('click', (e) => {
-        display.textContent = e.target.textContent;
+        if (display.textContent === '0' || operatorValue !== '') {
+            display.textContent = e.target.textContent;
+        }
+        else {
+            display.textContent += e.target.textContent;
+        }
+        
         if (operatorValue !== '') {
             secondOperand = parseInt(display.textContent);
         }
@@ -34,6 +40,8 @@ operators.forEach(element => {
 equalsButton.addEventListener('click', (e) => {
     executeCalculation();    
 })
+
+
 
 function executeCalculation() {
     display.textContent = operate(operatorValue, firstOperand, secondOperand);
