@@ -47,12 +47,15 @@ pointButton.addEventListener('click', (e) => {
 })
 
 equalsButton.addEventListener('click', (e) => {
-    executeCalculation();
+    if (secondOperand !== '') {
+        executeCalculation();
+    }
+    
 })
 
 
 function executeCalculation() {
-    display.textContent = operate(operatorValue, firstOperand, secondOperand);
+    display.textContent = Math.round((operate(operatorValue, firstOperand, secondOperand) + Number.EPSILON) * 10000) / 10000;
     firstOperand = Number(display.textContent);
     secondOperand = '';
     operatorValue = '';
