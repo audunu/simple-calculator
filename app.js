@@ -1,6 +1,7 @@
 const display = document.querySelector('.display');
 const equalsButton = document.querySelector('.equals');
 const pointButton = document.querySelector('.point');
+const clearButton = document.querySelector('.clear');
 
 let firstOperand = Number(display.textContent);
 let secondOperand = '';
@@ -12,10 +13,20 @@ const operators = document.querySelectorAll('.operator');
 
 
 
+clearButton.addEventListener('click', (e) => {
+    firstOperand = 0;
+    secondOperand = '';
+    display.textContent = firstOperand;
+    operatorValue = '';
+})
+
+
+
+
 numbers.forEach(element => {
     element.addEventListener('click', (e) => {
         // if display is 0 OR operation has started AND there is no comma or equal has been clicked
-        if (display.textContent === '0' || operatorValue !== '' && !display.textContent.includes('.') || secondOperand === '') {
+        if ((display.textContent === '0' || operatorValue !== '') && (!display.textContent.includes('.') || secondOperand === '')) {
             display.textContent = e.target.textContent;
         }
         else {
