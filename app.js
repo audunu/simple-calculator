@@ -31,13 +31,11 @@ function updateOperands() {
 }
 
 
-
-
 numbers.forEach(element => {
     element.addEventListener('click', (e) => {
-        // if display is 0 OR operation has started AND there is no comma or equal has been clicked
+        // if display is 0 OR operation has started AND there is no comma OR equal has been clicked
         if ((display.textContent === '0' || operatorValue !== '') && (!display.textContent.includes('.') || secondOperand === '')) {
-            display.textContent = e.target.textContent;
+                display.textContent = e.target.textContent;
         }
         else {
             display.textContent += e.target.textContent;
@@ -87,14 +85,6 @@ function executeCalculation() {
 }
 
 
-
-
-
-
-
-
-
-
 const add = function (a, b) {
     return a + b;
 };
@@ -108,7 +98,13 @@ const multiply = function (a, b) {
 }
 
 const divide = function (a, b) {
-    return a / b;
+    if (b === 0) {
+        return "ERROR"
+    }
+    else {
+        return a / b;
+    }
+    
 }
 
 const operate = function (operator, a, b) {
