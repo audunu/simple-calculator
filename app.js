@@ -1,6 +1,8 @@
-let display = document.querySelector('.display');
-let equalsButton = document.querySelector('.equals');
-let firstOperand = parseInt(display.textContent);
+const display = document.querySelector('.display');
+const equalsButton = document.querySelector('.equals');
+const pointButton = document.querySelector('.point');
+
+let firstOperand = Number(display.textContent);
 let secondOperand = '';
 let operatorValue = '';
 
@@ -8,22 +10,23 @@ let operatorValue = '';
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 
+
+
 numbers.forEach(element => {
     element.addEventListener('click', (e) => {
-        if (display.textContent === '0' || operatorValue !== '') {
+        // if display is 0 OR operation has started AND there is no comma or equal has been clicked
+        if (display.textContent === '0' || operatorValue !== '' && !display.textContent.includes('.') || secondOperand === '') {
             display.textContent = e.target.textContent;
         }
         else {
             display.textContent += e.target.textContent;
         }
-        
         if (operatorValue !== '') {
-            secondOperand = parseInt(display.textContent);
+            secondOperand = Number(display.textContent);
         }
         else {
-            firstOperand = parseInt(display.textContent);
+            firstOperand = Number(display.textContent);
         }
-        
     })
 })
 
@@ -36,17 +39,23 @@ operators.forEach(element => {
     })
 })
 
-
-equalsButton.addEventListener('click', (e) => {
-    executeCalculation();    
+pointButton.addEventListener('click', (e) => {
+    if (!display.textContent.includes('.')) {
+        display.textContent += e.target.textContent;
+    }    
+    
 })
 
+equalsButton.addEventListener('click', (e) => {
+    executeCalculation();
+})
 
 
 function executeCalculation() {
     display.textContent = operate(operatorValue, firstOperand, secondOperand);
-    firstOperand = parseInt(display.textContent);
+    firstOperand = Number(display.textContent);
     secondOperand = '';
+    operatorValue = '';
 }
 
 
