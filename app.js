@@ -3,16 +3,12 @@ const equalsButton = document.querySelector('.equals');
 const pointButton = document.querySelector('.point');
 const clearButton = document.querySelector('.clear');
 const plusminusButton = document.querySelector('.plusminus');
-
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
 
 let firstOperand = 0;
 let secondOperand = '';
 let operatorValue = '';
-
-
-const numbers = document.querySelectorAll('.number');
-const operators = document.querySelectorAll('.operator');
-
 
 
 plusminusButton.addEventListener('click', (e) => {
@@ -35,12 +31,13 @@ function updateOperands() {
 }
 
 
+
+
 numbers.forEach(element => {
     element.addEventListener('click', (e) => {
         // if display is 0 OR operation has started AND there is no comma or equal has been clicked
         if ((display.textContent === '0' || operatorValue !== '') && (!display.textContent.includes('.') || secondOperand === '')) {
             display.textContent = e.target.textContent;
-         
         }
         else {
             display.textContent += e.target.textContent;
@@ -61,8 +58,8 @@ operators.forEach(element => {
 pointButton.addEventListener('click', (e) => {
     if (!display.textContent.includes('.')) {
         display.textContent += e.target.textContent;
-    }    
-    
+    }
+
 })
 
 clearButton.addEventListener('click', (e) => {
@@ -77,7 +74,7 @@ equalsButton.addEventListener('click', (e) => {
     if (secondOperand !== '') {
         executeCalculation();
     }
-    
+
 })
 
 
@@ -86,7 +83,7 @@ function executeCalculation() {
     firstOperand = Number(display.textContent);
     secondOperand = '';
     operatorValue = '';
-    
+
 }
 
 
