@@ -23,17 +23,23 @@ numbers.forEach(element => {
 
 operators.forEach(element => {
     element.addEventListener('click', (e) => {
+        if (secondOperand !== '') {
+            executeCalculation();
+        }
         operatorValue = e.target.textContent;
-    
     })
 })
 
 
 equalsButton.addEventListener('click', (e) => {
-    display.textContent = operate(operatorValue, firstOperand, secondOperand);
-    firstOperand = parseInt(display.textContent);
+    executeCalculation();    
 })
 
+function executeCalculation() {
+    display.textContent = operate(operatorValue, firstOperand, secondOperand);
+    firstOperand = parseInt(display.textContent);
+    secondOperand = '';
+}
 
 
 
