@@ -2,6 +2,8 @@ const display = document.querySelector('.display');
 const equalsButton = document.querySelector('.equals');
 const pointButton = document.querySelector('.point');
 const clearButton = document.querySelector('.clear');
+const plusminusButton = document.querySelector('.plusminus');
+
 
 let firstOperand = Number(display.textContent);
 let secondOperand = '';
@@ -13,14 +15,24 @@ const operators = document.querySelectorAll('.operator');
 
 
 
-clearButton.addEventListener('click', (e) => {
-    firstOperand = 0;
-    secondOperand = '';
-    display.textContent = firstOperand;
-    operatorValue = '';
+plusminusButton.addEventListener('click', (e) => {
+    if (display.textContent.includes('-')) {
+        display.textContent.replace('-', '')
+    }
+    else {
+        display.textContent = '-' + display.textContent;
+    }
+    updateOperands();
 })
 
-
+function updateOperands() {
+    if (operatorValue !== '') {
+        secondOperand = Number(display.textContent);
+    }
+    else {
+        firstOperand = Number(display.textContent);
+    }
+}
 
 
 numbers.forEach(element => {
@@ -32,12 +44,7 @@ numbers.forEach(element => {
         else {
             display.textContent += e.target.textContent;
         }
-        if (operatorValue !== '') {
-            secondOperand = Number(display.textContent);
-        }
-        else {
-            firstOperand = Number(display.textContent);
-        }
+        updateOperands();
     })
 })
 
@@ -56,6 +63,14 @@ pointButton.addEventListener('click', (e) => {
     }    
     
 })
+
+clearButton.addEventListener('click', (e) => {
+    firstOperand = 0;
+    secondOperand = '';
+    display.textContent = firstOperand;
+    operatorValue = '';
+})
+
 
 equalsButton.addEventListener('click', (e) => {
     if (secondOperand !== '') {
