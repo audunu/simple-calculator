@@ -1,115 +1,38 @@
 let display = document.querySelector('.display');
-let displayValue = '';
-let displayValueB = '';
-let operator = '';
-const zero = document.querySelector('.zero');
-const one = document.querySelector('.one');
-const two = document.querySelector('.two');
-const three = document.querySelector('.three');
-const four = document.querySelector('.four');
-const five = document.querySelector('.five');
-const six = document.querySelector('.six');
-const seven = document.querySelector('.seven');
-const eight = document.querySelector('.eight');
-const nine = document.querySelector('.nine');
-const divide = document.querySelector('.divide');
-const multiply = document.querySelector('.multiply');
-const add = document.querySelector('.add');
-const subtract = document.querySelector('.subtract');
-const equals = document.querySelector('.equals');
+let equalsButton = document.querySelector('.equals');
+let firstOperand = parseInt(display.textContent);
+let secondOperand = '';
+let operatorValue = '';
 
-equals.addEventListener('click', () => {
-    display.textContent = operate(operator, displayValue, displayValueB);
+
+const numbers = document.querySelectorAll('.number');
+const operators = document.querySelectorAll('.operator');
+
+numbers.forEach(element => {
+    element.addEventListener('click', (e) => {
+        display.textContent = e.target.textContent;
+        if (operatorValue !== '') {
+            secondOperand = parseInt(display.textContent);
+        }
+        else {
+            firstOperand = parseInt(display.textContent);
+        }
+        
+    })
+})
+
+operators.forEach(element => {
+    element.addEventListener('click', (e) => {
+        operatorValue = e.target.textContent;
+    
+    })
 })
 
 
-
-
-
-
-divide.addEventListener('click', () => {
-    operator = '/';
-});
-
-multiply.addEventListener('click', () => {
-    operator = '*';
-});
-
-add.addEventListener('click', () => {
-    operator = '+';
-});
-
-subtract.addEventListener('click', () => {
-    operator = '-';
-});
-
-
-zero.addEventListener('click', () => {
-    if (isNaN(displayValue)) {
-        displayValue = 0;
-        display.textContent = 0;
-    }
-    else {
-        displayValueB = 0;
-    }
-});
-
-
-one.addEventListener('click', () => {
-    if (isNaN(displayValue)) {
-    displayValue = 1;
-    display.textContent = 1;
-}
-else {
-    displayValueB = 1;
-}
-});
-
-two.addEventListener('click', () => {
-    if (isNaN(displayValue)) {
-    displayValue = 2;
-    display.textContent = 2;
-}
-else {
-    displayValueB = 2;
-}
-
-});
-
-three.addEventListener('click', () => {
-    displayValue = 3;
-    display.textContent = 3;
-});
-
-four.addEventListener('click', () => {
-    displayValue = 4;
-    display.textContent = 4;
-});
-
-five.addEventListener('click', () => {
-    displayValue = 5;
-    display.textContent = 5;
-});
-
-six.addEventListener('click', () => {
-    displayValue = 6;
-    display.textContent = 6;
-});
-
-seven.addEventListener('click', () => {
-    displayValue = 7;
-    display.textContent = 7;
-});
-
-eight.addEventListener('click', () => {
-    displayValue = 8;
-    display.textContent = 8;
-});
-
-nine.addEventListener('click', () => {
-    displayValue = 9;
-    display.textContent = 9;
-});
+equalsButton.addEventListener('click', (e) => {
+    display.textContent = operate(operatorValue, firstOperand, secondOperand);
+    firstOperand = parseInt(display.textContent);
+})
 
 
 
