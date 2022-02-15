@@ -1,26 +1,79 @@
 let display = document.querySelector('.display');
 let displayValue = '';
+let displayValueB = '';
+let operator = '';
 const zero = document.querySelector('.zero');
 const one = document.querySelector('.one');
-const two = document.querySelector('.two')
-const three = document.querySelector('.three')
-const four = document.querySelector('.four')
-const five = document.querySelector('.five')
-const six = document.querySelector('.six')
-const seven = document.querySelector('.seven')
-const eight = document.querySelector('.eight')
-const nine = document.querySelector('.nine')
+const two = document.querySelector('.two');
+const three = document.querySelector('.three');
+const four = document.querySelector('.four');
+const five = document.querySelector('.five');
+const six = document.querySelector('.six');
+const seven = document.querySelector('.seven');
+const eight = document.querySelector('.eight');
+const nine = document.querySelector('.nine');
+const divide = document.querySelector('.divide');
+const multiply = document.querySelector('.multiply');
+const add = document.querySelector('.add');
+const subtract = document.querySelector('.subtract');
+const equals = document.querySelector('.equals');
 
+equals.addEventListener('click', () => {
+    display.textContent = operate(operator, displayValue, displayValueB);
+})
+
+
+
+
+
+
+divide.addEventListener('click', () => {
+    operator = '/';
+});
+
+multiply.addEventListener('click', () => {
+    operator = '*';
+});
+
+add.addEventListener('click', () => {
+    operator = '+';
+});
+
+subtract.addEventListener('click', () => {
+    operator = '-';
+});
+
+
+zero.addEventListener('click', () => {
+    if (isNaN(displayValue)) {
+        displayValue = 0;
+        display.textContent = 0;
+    }
+    else {
+        displayValueB = 0;
+    }
+});
 
 
 one.addEventListener('click', () => {
+    if (isNaN(displayValue)) {
     displayValue = 1;
     display.textContent = 1;
+}
+else {
+    displayValueB = 1;
+}
 });
 
 two.addEventListener('click', () => {
+    if (isNaN(displayValue)) {
     displayValue = 2;
     display.textContent = 2;
+}
+else {
+    displayValueB = 2;
+}
+
 });
 
 three.addEventListener('click', () => {
@@ -86,16 +139,16 @@ const divide = function (a, b) {
 
 const operate = function (operator, a, b) {
     if (operator === '+') {
-        add(a, b);
+        return add(a, b);
     }
     else if (operator === '-') {
-        subtract(a, b);
+        return subtract(a, b);
     }
     else if (operator === '*') {
-        multiply(a, b);
+        return multiply(a, b);
     }
     else if (operator === '/') {
-        divide(a, b);
+        return divide(a, b);
     }
 }
 
