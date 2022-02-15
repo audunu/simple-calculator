@@ -5,7 +5,7 @@ const clearButton = document.querySelector('.clear');
 const plusminusButton = document.querySelector('.plusminus');
 
 
-let firstOperand = Number(display.textContent);
+let firstOperand = 0;
 let secondOperand = '';
 let operatorValue = '';
 
@@ -40,6 +40,7 @@ numbers.forEach(element => {
         // if display is 0 OR operation has started AND there is no comma or equal has been clicked
         if ((display.textContent === '0' || operatorValue !== '') && (!display.textContent.includes('.') || secondOperand === '')) {
             display.textContent = e.target.textContent;
+         
         }
         else {
             display.textContent += e.target.textContent;
@@ -85,6 +86,7 @@ function executeCalculation() {
     firstOperand = Number(display.textContent);
     secondOperand = '';
     operatorValue = '';
+    
 }
 
 
