@@ -8,6 +8,7 @@ const operators = document.querySelectorAll('.operator');
 
 
 let equalIsClicked = false;
+let currentOperatorSecond = false;
 let firstOperand = 0;
 let secondOperand = '';
 let operatorValue = '';
@@ -36,7 +37,10 @@ function updateOperands() {
 numbers.forEach(element => {
     element.addEventListener('click', (e) => {
 
-        if ((display.textContent === '0' || operatorValue !== '') && (!display.textContent.includes('.') || secondOperand === '')) {
+        if (operatorValue !== '' && secondOperand !== '') {
+            display.textContent += e.target.textContent;
+        }
+        else if ((display.textContent === '0' || operatorValue !== '') && (!display.textContent.includes('.') || secondOperand === '')) {
             display.textContent = e.target.textContent;
             equalIsClicked = false;
         }
@@ -59,6 +63,7 @@ operators.forEach(element => {
             executeCalculation();
         }
         operatorValue = e.target.textContent;
+        currentOperatorSecond = true;
     })
 })
 
