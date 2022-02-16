@@ -6,6 +6,8 @@ const plusminusButton = document.querySelector('.plusminus');
 const numbers = document.querySelectorAll('.number');
 const operators = document.querySelectorAll('.operator');
 
+
+let equalIsClicked = false;
 let firstOperand = 0;
 let secondOperand = '';
 let operatorValue = '';
@@ -33,16 +35,23 @@ function updateOperands() {
 
 numbers.forEach(element => {
     element.addEventListener('click', (e) => {
-        // if display is 0 OR operation has started AND there is no comma OR equal has been clicked
+
         if ((display.textContent === '0' || operatorValue !== '') && (!display.textContent.includes('.') || secondOperand === '')) {
-                display.textContent = e.target.textContent;
+            display.textContent = e.target.textContent;
+            equalIsClicked = false;
+        }
+        else if (equalIsClicked === true) {
+            display.textContent = e.target.textContent;
         }
         else {
             display.textContent += e.target.textContent;
         }
+
+    
         updateOperands();
     })
 })
+
 
 operators.forEach(element => {
     element.addEventListener('click', (e) => {
@@ -72,6 +81,7 @@ equalsButton.addEventListener('click', (e) => {
     if (secondOperand !== '') {
         executeCalculation();
     }
+    equalIsClicked = true;
 
 })
 
@@ -104,7 +114,7 @@ const divide = function (a, b) {
     else {
         return a / b;
     }
-    
+
 }
 
 const operate = function (operator, a, b) {
