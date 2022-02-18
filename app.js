@@ -46,6 +46,7 @@ numbers.forEach(element => {
         }
         else if (equalIsClicked === true) {
             display.textContent = e.target.textContent;
+            equalIsClicked = false;
         }
         else {
             display.textContent += e.target.textContent;
